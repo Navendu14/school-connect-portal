@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StudentsRouteImport } from './routes/students'
+import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as FacultyRouteImport } from './routes/faculty'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as AdmissionsRouteImport } from './routes/admissions'
@@ -20,6 +21,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const StudentsRoute = StudentsRouteImport.update({
   id: '/students',
   path: '/students',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FacultyRoute = FacultyRouteImport.update({
@@ -60,6 +66,7 @@ export interface FileRoutesByFullPath {
   '/admissions': typeof AdmissionsRoute
   '/events': typeof EventsRoute
   '/faculty': typeof FacultyRoute
+  '/gallery': typeof GalleryRoute
   '/students': typeof StudentsRoute
 }
 export interface FileRoutesByTo {
@@ -69,6 +76,7 @@ export interface FileRoutesByTo {
   '/admissions': typeof AdmissionsRoute
   '/events': typeof EventsRoute
   '/faculty': typeof FacultyRoute
+  '/gallery': typeof GalleryRoute
   '/students': typeof StudentsRoute
 }
 export interface FileRoutesById {
@@ -79,6 +87,7 @@ export interface FileRoutesById {
   '/admissions': typeof AdmissionsRoute
   '/events': typeof EventsRoute
   '/faculty': typeof FacultyRoute
+  '/gallery': typeof GalleryRoute
   '/students': typeof StudentsRoute
 }
 export interface FileRouteTypes {
@@ -90,6 +99,7 @@ export interface FileRouteTypes {
     | '/admissions'
     | '/events'
     | '/faculty'
+    | '/gallery'
     | '/students'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -99,6 +109,7 @@ export interface FileRouteTypes {
     | '/admissions'
     | '/events'
     | '/faculty'
+    | '/gallery'
     | '/students'
   id:
     | '__root__'
@@ -108,6 +119,7 @@ export interface FileRouteTypes {
     | '/admissions'
     | '/events'
     | '/faculty'
+    | '/gallery'
     | '/students'
   fileRoutesById: FileRoutesById
 }
@@ -118,6 +130,7 @@ export interface RootRouteChildren {
   AdmissionsRoute: typeof AdmissionsRoute
   EventsRoute: typeof EventsRoute
   FacultyRoute: typeof FacultyRoute
+  GalleryRoute: typeof GalleryRoute
   StudentsRoute: typeof StudentsRoute
 }
 
@@ -128,6 +141,13 @@ declare module '@tanstack/react-router' {
       path: '/students'
       fullPath: '/students'
       preLoaderRoute: typeof StudentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faculty': {
@@ -182,6 +202,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdmissionsRoute: AdmissionsRoute,
   EventsRoute: EventsRoute,
   FacultyRoute: FacultyRoute,
+  GalleryRoute: GalleryRoute,
   StudentsRoute: StudentsRoute,
 }
 export const routeTree = rootRouteImport
