@@ -1,0 +1,62 @@
+import { Link } from "@tanstack/react-router";
+import { GraduationCap, Mail, Phone, MapPin, Facebook, Instagram, Youtube } from "lucide-react";
+
+export function Footer() {
+  return (
+    <footer className="border-t border-border bg-secondary/40 mt-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <Link to="/" className="flex items-center gap-2">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl gradient-hero">
+              <GraduationCap className="h-5 w-5 text-primary-foreground" />
+            </div>
+            <div className="font-display text-lg font-bold">Brightfield School</div>
+          </Link>
+          <p className="mt-4 text-sm text-muted-foreground max-w-xs">
+            Nurturing curious minds and confident leaders since 1985. A CBSE affiliated co-educational institution.
+          </p>
+          <div className="flex gap-3 mt-5">
+            {[Facebook, Instagram, Youtube].map((Icon, i) => (
+              <a key={i} href="#" className="h-9 w-9 rounded-full bg-card border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors">
+                <Icon className="h-4 w-4" />
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h4 className="text-sm font-semibold text-foreground mb-4">Explore</h4>
+          <ul className="space-y-2 text-sm text-muted-foreground">
+            {[["/about","About"],["/academics","Academics"],["/admissions","Admissions"],["/faculty","Faculty"],["/gallery","Gallery"]].map(([to,l])=>(
+              <li key={to}><Link to={to} className="hover:text-primary">{l}</Link></li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h4 className="text-sm font-semibold text-foreground mb-4">Resources</h4>
+          <ul className="space-y-2 text-sm text-muted-foreground">
+            {[["/notices","Notices"],["/events","Events & Activities"],["/students","Students"],["/contact","Contact"]].map(([to,l])=>(
+              <li key={to}><Link to={to} className="hover:text-primary">{l}</Link></li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h4 className="text-sm font-semibold text-foreground mb-4">Reach Us</h4>
+          <ul className="space-y-3 text-sm text-muted-foreground">
+            <li className="flex gap-2"><MapPin className="h-4 w-4 mt-0.5 text-primary shrink-0"/> 12 Garden Road, Sector 21, New Delhi 110075</li>
+            <li className="flex gap-2"><Phone className="h-4 w-4 mt-0.5 text-primary shrink-0"/> +91 98765 43210</li>
+            <li className="flex gap-2"><Mail className="h-4 w-4 mt-0.5 text-primary shrink-0"/> info@brightfield.edu.in</li>
+          </ul>
+        </div>
+      </div>
+      <div className="border-t border-border">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted-foreground">
+          <p>© {new Date().getFullYear()} Brightfield Senior Secondary School. All rights reserved.</p>
+          <p>Affiliated to CBSE | Affiliation No. 2730XXX</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
