@@ -14,6 +14,7 @@ import { Route as NoticesRouteImport } from './routes/notices'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as FacultyRouteImport } from './routes/faculty'
 import { Route as EventsRouteImport } from './routes/events'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AdmissionsRouteImport } from './routes/admissions'
 import { Route as AcademicsRouteImport } from './routes/academics'
 import { Route as AboutRouteImport } from './routes/about'
@@ -44,6 +45,11 @@ const EventsRoute = EventsRouteImport.update({
   path: '/events',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdmissionsRoute = AdmissionsRouteImport.update({
   id: '/admissions',
   path: '/admissions',
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/academics': typeof AcademicsRoute
   '/admissions': typeof AdmissionsRoute
+  '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
   '/faculty': typeof FacultyRoute
   '/gallery': typeof GalleryRoute
@@ -81,6 +88,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/academics': typeof AcademicsRoute
   '/admissions': typeof AdmissionsRoute
+  '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
   '/faculty': typeof FacultyRoute
   '/gallery': typeof GalleryRoute
@@ -93,6 +101,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/academics': typeof AcademicsRoute
   '/admissions': typeof AdmissionsRoute
+  '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
   '/faculty': typeof FacultyRoute
   '/gallery': typeof GalleryRoute
@@ -106,6 +115,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/academics'
     | '/admissions'
+    | '/contact'
     | '/events'
     | '/faculty'
     | '/gallery'
@@ -117,6 +127,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/academics'
     | '/admissions'
+    | '/contact'
     | '/events'
     | '/faculty'
     | '/gallery'
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/academics'
     | '/admissions'
+    | '/contact'
     | '/events'
     | '/faculty'
     | '/gallery'
@@ -140,6 +152,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AcademicsRoute: typeof AcademicsRoute
   AdmissionsRoute: typeof AdmissionsRoute
+  ContactRoute: typeof ContactRoute
   EventsRoute: typeof EventsRoute
   FacultyRoute: typeof FacultyRoute
   GalleryRoute: typeof GalleryRoute
@@ -184,6 +197,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EventsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admissions': {
       id: '/admissions'
       path: '/admissions'
@@ -220,6 +240,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AcademicsRoute: AcademicsRoute,
   AdmissionsRoute: AdmissionsRoute,
+  ContactRoute: ContactRoute,
   EventsRoute: EventsRoute,
   FacultyRoute: FacultyRoute,
   GalleryRoute: GalleryRoute,
