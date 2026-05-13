@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StudentsRouteImport } from './routes/students'
+import { Route as NoticesRouteImport } from './routes/notices'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as FacultyRouteImport } from './routes/faculty'
 import { Route as EventsRouteImport } from './routes/events'
@@ -21,6 +22,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const StudentsRoute = StudentsRouteImport.update({
   id: '/students',
   path: '/students',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NoticesRoute = NoticesRouteImport.update({
+  id: '/notices',
+  path: '/notices',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GalleryRoute = GalleryRouteImport.update({
@@ -67,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/events': typeof EventsRoute
   '/faculty': typeof FacultyRoute
   '/gallery': typeof GalleryRoute
+  '/notices': typeof NoticesRoute
   '/students': typeof StudentsRoute
 }
 export interface FileRoutesByTo {
@@ -77,6 +84,7 @@ export interface FileRoutesByTo {
   '/events': typeof EventsRoute
   '/faculty': typeof FacultyRoute
   '/gallery': typeof GalleryRoute
+  '/notices': typeof NoticesRoute
   '/students': typeof StudentsRoute
 }
 export interface FileRoutesById {
@@ -88,6 +96,7 @@ export interface FileRoutesById {
   '/events': typeof EventsRoute
   '/faculty': typeof FacultyRoute
   '/gallery': typeof GalleryRoute
+  '/notices': typeof NoticesRoute
   '/students': typeof StudentsRoute
 }
 export interface FileRouteTypes {
@@ -100,6 +109,7 @@ export interface FileRouteTypes {
     | '/events'
     | '/faculty'
     | '/gallery'
+    | '/notices'
     | '/students'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -110,6 +120,7 @@ export interface FileRouteTypes {
     | '/events'
     | '/faculty'
     | '/gallery'
+    | '/notices'
     | '/students'
   id:
     | '__root__'
@@ -120,6 +131,7 @@ export interface FileRouteTypes {
     | '/events'
     | '/faculty'
     | '/gallery'
+    | '/notices'
     | '/students'
   fileRoutesById: FileRoutesById
 }
@@ -131,6 +143,7 @@ export interface RootRouteChildren {
   EventsRoute: typeof EventsRoute
   FacultyRoute: typeof FacultyRoute
   GalleryRoute: typeof GalleryRoute
+  NoticesRoute: typeof NoticesRoute
   StudentsRoute: typeof StudentsRoute
 }
 
@@ -141,6 +154,13 @@ declare module '@tanstack/react-router' {
       path: '/students'
       fullPath: '/students'
       preLoaderRoute: typeof StudentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notices': {
+      id: '/notices'
+      path: '/notices'
+      fullPath: '/notices'
+      preLoaderRoute: typeof NoticesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gallery': {
@@ -203,6 +223,7 @@ const rootRouteChildren: RootRouteChildren = {
   EventsRoute: EventsRoute,
   FacultyRoute: FacultyRoute,
   GalleryRoute: GalleryRoute,
+  NoticesRoute: NoticesRoute,
   StudentsRoute: StudentsRoute,
 }
 export const routeTree = rootRouteImport
