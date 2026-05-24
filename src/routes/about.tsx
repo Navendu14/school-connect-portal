@@ -2,31 +2,63 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHero, Section, SectionTitle } from "@/components/site/Page";
 import { Eye, Target, Award, Building, FileText, ScrollText } from "lucide-react";
 import library from "@/assets/library.jpg";
+import { CHAIRMAN_NAME, MANAGER_NAME, PRINCIPAL_MESSAGE, PRINCIPAL_NAME, SCHOOL_HISTORY } from "@/config/config";
+import { Certificate } from "crypto";
+import {
+  Music,
+  Monitor,
+  Library,
+  FlaskConical,
+  Bus,
+  HeartPulse,
+} from "lucide-react";
+
+import { useState } from "react";
+
+
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Us — Brightfield School" },
-      { name: "description", content: "Learn about Brightfield School's history, vision, mission, leadership and infrastructure." },
+      { title: "About Us — Rise & Shine Public School" },
+      { name: "description", content: "Learn about Rise & Shine School's history, vision, mission, leadership and infrastructure." },
     ],
   }),
   component: About,
 });
 
 function About() {
+  const [showAllDocs, setShowAllDocs] = useState(false);
+
+  const documents = [
+    ["Affiliation Certificate", "Affiliation_Certificate.pdf"],
+    ["Land Certificate", "Land_Certificate.pdf"],
+    ["Society Registration", "Society_Renewal.pdf"],
+    ["Land Lease / NOC", "NOC.pdf"],
+    ["Building Safety Certificate", "Building_Safety_Certificate.pdf"],
+    ["Fire Safety Certificate", "Fire_Safety_Certificate.pdf"],
+    ["Last 3 Years' Result", "last-3-years-result.pdf"],
+    ["Management", "management.pdf"],
+    ["Managing Committee", "Managing_Committee.pdf"],
+    ["Mandatory Disclosure", "Mandatory_Disclosure_Details.pdf"],
+    ["Parent Teacher Association", "PTA.pdf"],
+    ["Recognition Certificate", "Recognition_Certificate.pdf"],
+    ["Sanitation Certificate", "Sanitation_Certificate.pdf"],
+    ["Self Certification", "Self_Certification.pdf"],
+  ];
   return (
     <>
-      <PageHero eyebrow="About Us" title="Forty years of learning, leading, and lifting each other up." subtitle="Established in 1985, Brightfield is a CBSE co-educational school serving over 2,400 students from Pre-primary to Class XII." />
+      <PageHero eyebrow="About Us" title="Twenty years of learning, leading, and lifting each other up." subtitle="Established in 2005, Rise & Shine is a Bhartiya Shiksha Board co-educational school serving students from Pre-primary to Class XII." />
 
       <Section>
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <img src={library} alt="School library" loading="lazy" width={1024} height={768} className="rounded-3xl shadow-card aspect-[4/3] object-cover" />
+          <img src="/img/bg/image1.jpg" alt="image" loading="lazy" width={1024} height={768} className="rounded-3xl shadow-card aspect-[4/3] object-cover" />
           <div>
-            <SectionTitle eyebrow="Our Story" title="A school built around the child." />
+            <SectionTitle eyebrow="Our Story" title="Start of a Legacy" />
             <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>What began as a small neighbourhood school with 86 children has grown into one of Delhi's most respected educational institutions — but the heart of the place hasn't changed.</p>
-              <p>We still believe that great schools are built one relationship at a time: between a teacher and a learner, between a child and an idea, between a family and a community of educators who care.</p>
-              <p>Our graduates go on to top universities across India and abroad, but more importantly, they leave us as kind, curious and capable people.</p>
+              <p>
+                {SCHOOL_HISTORY.split("\n").map((line, index) => <p key={index}>{line}</p>)}
+              </p>
             </div>
           </div>
         </div>
@@ -51,13 +83,12 @@ function About() {
 
       <Section className="!pt-0">
         <div className="rounded-3xl gradient-soft border border-border p-8 md:p-12">
-          <SectionTitle eyebrow="Principal's Message" title="Dr. Meera Krishnan" />
+          <SectionTitle eyebrow="Principal's Message" title={PRINCIPAL_NAME} />
           <div className="grid md:grid-cols-[200px_1fr] gap-8 items-start">
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" alt="Principal" loading="lazy" className="rounded-2xl aspect-square object-cover w-full max-w-[200px]" />
+            <img src="/img/principal/image.png" alt="Principal" loading="lazy" className="rounded-2xl aspect-square object-cover w-full max-w-[200px]" />
             <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>"At Brightfield, we believe education is not the filling of a pail but the lighting of a fire. Every morning, our teachers walk into classrooms ready to spark something — a question, an interest, a way of seeing the world that wasn't there yesterday."</p>
-              <p>"We are proud of our results, but prouder still of the young people behind them — articulate, generous, brave."</p>
-              <p className="font-semibold text-foreground">— Dr. Meera Krishnan, Principal</p>
+              <p>{PRINCIPAL_MESSAGE.split("\n").map((line, index) => <p key={index}>{line}</p>)}</p>
+              <p className="font-semibold text-foreground">— {PRINCIPAL_NAME}, Principal</p>
             </div>
           </div>
         </div>
@@ -65,17 +96,40 @@ function About() {
 
       <Section className="!pt-0">
         <SectionTitle eyebrow="Leadership" title="School Management" />
-        <div className="grid md:grid-cols-4 gap-5">
+
+        <div className="grid md:grid-cols-3 gap-5">
           {[
-            { name: "Mr. Anil Verma", role: "Chairman" },
-            { name: "Mrs. Sunita Rao", role: "Vice Chairperson" },
-            { name: "Dr. Meera Krishnan", role: "Principal" },
-            { name: "Mr. Rohit Bansal", role: "Vice Principal" },
+            {
+              name: `${CHAIRMAN_NAME}`,
+              role: "Chairman",
+              image: "/img/chairman/image.jpg",
+            },
+            {
+              name: `${PRINCIPAL_NAME}`,
+              role: "Principal",
+              image: "/img/principal/image.png",
+            },
+            {
+              name: `${MANAGER_NAME}`,
+              role: "Manager",
+              image: "/img/manager/image.jpg",
+            },
           ].map((m) => (
-            <div key={m.name} className="p-6 rounded-2xl bg-card border border-border text-center">
-              <div className="h-20 w-20 rounded-full gradient-hero mx-auto mb-3" />
+            <div
+              key={m.name}
+              className="p-6 rounded-2xl bg-card border border-border text-center"
+            >
+              <img
+                src={m.image}
+                alt={m.name}
+                className="h-20 w-20 rounded-full object-cover mx-auto mb-3 border"
+              />
+
               <div className="font-semibold">{m.name}</div>
-              <div className="text-xs text-muted-foreground mt-1">{m.role}</div>
+
+              <div className="text-xs text-muted-foreground mt-1">
+                {m.role}
+              </div>
             </div>
           ))}
         </div>
@@ -87,13 +141,12 @@ function About() {
             <SectionTitle eyebrow="Affiliations" title="Recognised & Accredited" />
             <ul className="space-y-3">
               {[
-                ["CBSE Affiliation", "No. 2730XXX (Class XII)"],
+                ["Bhartiya Shiksha Board Affiliation", "No. UKOF26020171 (Class XII)"],
                 ["School Recognition", "Govt. of NCT of Delhi"],
-                ["NCERT Curriculum Partner", "since 2012"],
-                ["Cambridge Assessment", "ESOL exam centre"],
-              ].map(([t,d])=>(
+                ["Bhartiya Shiksha Board Curriculum Partner", "since 2026"],
+              ].map(([t, d]) => (
                 <li key={t} className="p-4 rounded-xl bg-card border border-border flex items-start gap-3">
-                  <FileText className="h-5 w-5 text-primary mt-0.5"/>
+                  <FileText className="h-5 w-5 text-primary mt-0.5" />
                   <div><div className="font-medium text-sm">{t}</div><div className="text-xs text-muted-foreground">{d}</div></div>
                 </li>
               ))}
@@ -102,13 +155,32 @@ function About() {
           <div>
             <SectionTitle eyebrow="Documents" title="Mandatory Disclosures" />
             <ul className="space-y-3">
-              {["Affiliation Certificate","Trust Registration","Society Registration","Land Lease / NOC","Building Safety Certificate","Fire Safety Certificate","Last 3 Years' Result"].map(d=>(
-                <li key={d} className="p-4 rounded-xl bg-card border border-border flex items-center justify-between hover:bg-secondary/50 transition-colors">
-                  <div className="flex items-center gap-3"><ScrollText className="h-4 w-4 text-primary"/><span className="text-sm">{d}</span></div>
-                  <span className="text-xs text-primary font-medium">View PDF</span>
+              {(showAllDocs ? documents : documents.slice(0, 5)).map(([d, file]) => (
+                <li
+                  key={d}
+                  className="p-4 rounded-xl bg-card border border-border flex items-center justify-between hover:bg-secondary/50 transition-colors cursor-pointer"
+                  onClick={() => window.open(`/documents/certificate/${file}`, "_blank")}
+                >
+                  <div className="flex items-center gap-3">
+                    <ScrollText className="h-4 w-4 text-primary" />
+                    <span className="text-sm">{d}</span>
+                  </div>
+
+                  <span className="text-xs text-primary font-medium">
+                    View PDF
+                  </span>
                 </li>
               ))}
             </ul>
+
+            {documents.length > 5 && (
+              <button
+                onClick={() => setShowAllDocs(!showAllDocs)}
+                className="mt-4 text-sm font-medium text-primary hover:underline"
+              >
+                {showAllDocs ? "Show Less" : "Show More"}
+              </button>
+            )}
           </div>
         </div>
       </Section>
@@ -117,15 +189,15 @@ function About() {
         <SectionTitle eyebrow="Campus" title="Infrastructure" center />
         <div className="grid md:grid-cols-3 gap-5">
           {[
-            { icon: Building, title: "Smart Classrooms", text: "60 air-conditioned classrooms with interactive panels." },
-            { icon: Award, title: "Sports Complex", text: "200m track, basketball, tennis & cricket facilities." },
-            { icon: FileText, title: "Library", text: "25,000+ books and digital subscriptions." },
-            { icon: Building, title: "Science Labs", text: "Dedicated Physics, Chemistry, Biology and Computer labs." },
-            { icon: Building, title: "Auditorium", text: "Air-conditioned 600-seater with full A/V setup." },
-            { icon: Building, title: "Medical Room", text: "Full-time nurse and on-call paediatrician." },
-          ].map(f=>(
+            { icon: Music, title: "Music Room", text: "A creative space where students explore music, instruments, and cultural activities to enhance artistic talent." },
+            { icon: Monitor, title: "Computer Lab", text: "A technology-enabled computer lab that provides students with digital learning and practical computer skills." },
+            { icon: Library, title: "Library", text: "A well-stocked library with academic and story books that encourages reading habits and self-learning among students." },
+            { icon: FlaskConical, title: "Science Labs", text: "Modern science labs equipped with practical tools and resources to help students learn through experiments and innovation." },
+            { icon: Bus, title: "Transport Facility", text: "Safe and reliable transport services ensuring comfortable travel for students from different locations." },
+            { icon: HeartPulse, title: "Medical Room", text: "A dedicated medical room with basic healthcare facilities to ensure students safety and well-being during school hours." },
+          ].map(f => (
             <div key={f.title} className="p-6 rounded-2xl bg-card border border-border">
-              <f.icon className="h-6 w-6 text-primary mb-3"/>
+              <f.icon className="h-6 w-6 text-primary mb-3" />
               <h4 className="font-semibold">{f.title}</h4>
               <p className="text-sm text-muted-foreground mt-1">{f.text}</p>
             </div>

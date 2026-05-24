@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Menu, X, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+import { SCHOOL_NAME, PRIMARY_SCHL_NAME } from "@/config/config";
+
 const nav = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
@@ -26,8 +28,8 @@ export function Header() {
             <GraduationCap className="h-5 w-5 text-primary-foreground" />
           </div>
           <div className="leading-tight">
-            <div className="font-display text-lg font-bold text-foreground">Brightfield</div>
-            <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Senior Sec. School</div>
+            <div className="font-display text-lg font-bold text-foreground">{SCHOOL_NAME}</div>
+            <div className="text-[10px] uppercase tracking-widest text-muted-foreground">{PRIMARY_SCHL_NAME}</div>
           </div>
         </Link>
 
