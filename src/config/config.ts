@@ -31,3 +31,37 @@ Life at RSPS centres on a shared commitment to academic excellence, intellectual
 The school upholds the founders' commitment to excellence in all fields, with emphasis on its motto Service Before Self.`;
 
 export const CONVEYANCE_CHARGES = "MINIMUM RS 1000/-";
+
+
+// For BookPriceList
+export const booksApiUrl = "https://risenshineps.com/api/books/get_books_detail.php";
+export const booksClassApiUrl = "https://risenshineps.com/api/books/get_book_class.php";
+
+// For RTEStudentsSection
+export const rteYearsApiUrl = "https://risenshineps.com/api/rte/get_rte_year.php";
+export const rteStudentsApiUrl = "https://risenshineps.com/api/rte/get_rte_students.php?year=";
+
+// For TCStudentsSection
+export const tcYearsApiUrl = "https://risenshineps.com/api/tc/get_tc_year.php";     
+export const tcStudentsApiUrl = "https://risenshineps.com/api/tc/get_tc_student.php?year=";
+
+// For AchievementsSection
+export const achievementsApiUrl = "https://www.risenshineps.com/api/achievement/get_student_achievement.php";
+
+// For fees
+export const feesApiUrl = "https://risenshineps.com/api/fees/get_fees.php";
+
+// For faculty
+export const facultyApiUrl = "https://risenshineps.com/api/teacher/get_teachers.php";
+
+// For events
+export const eventsApiUrl = "https://www.risenshineps.com/api/events/get_event_detail.php";
+
+// For gallery
+export const galleryApiUrl = "https://www.risenshineps.com/api/gallery/get_image_info.php";
+
+//For notices
+export const noticesApiUrl = "https://www.risenshineps.com/api/notices/get_notice_detail.php";
+
+// For contact page map
+export const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6963.862273454487!2d79.483767!3d29.225579999999997!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x4da6a6e7b14de81e!2sRise%20and%20Shine%20Public%20School!5e0!3m2!1sen!2sin!4v1567708624329!5m2!1sen!2sin";

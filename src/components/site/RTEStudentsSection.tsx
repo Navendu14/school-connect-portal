@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Section, SectionTitle } from "@/components/site/Page";
+import { rteStudentsApiUrl, rteYearsApiUrl } from "@/config/config";
 
 type YearItem = {
   year: string;
@@ -21,7 +22,7 @@ export default function RTEStudentsSection() {
 
   // Fetch available years
   useEffect(() => {
-    fetch("https://risenshineps.com/api/rte/get_rte_year.php")
+    fetch(rteYearsApiUrl)
       .then((res) => res.json())
       .then((data: YearItem[]) => {
         setYears(data);
@@ -41,7 +42,7 @@ export default function RTEStudentsSection() {
     setLoading(true);
 
     fetch(
-      `https://risenshineps.com/api/rte/get_rte_students.php?year=${selectedYear}`
+      `${rteStudentsApiUrl}${selectedYear}`
     )
       .then((res) => res.json())
       .then((data) => {

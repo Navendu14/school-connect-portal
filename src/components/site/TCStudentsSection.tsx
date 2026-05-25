@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Section, SectionTitle } from "@/components/site/Page";
+import { tcStudentsApiUrl, tcYearsApiUrl } from "@/config/config";
 
 type YearItem = {
   year: string;
@@ -25,7 +26,7 @@ export default function TCStudentsSection() {
 
   // Fetch available years
   useEffect(() => {
-    fetch("https://risenshineps.com/api/tc/get_tc_year.php")
+    fetch(tcYearsApiUrl)
       .then((res) => res.json())
       .then((data: YearItem[]) => {
         setYears(data);
@@ -45,7 +46,7 @@ export default function TCStudentsSection() {
     setLoading(true);
 
     fetch(
-      `https://risenshineps.com/api/tc/get_tc_student.php?year=${selectedYear}`
+      `${tcStudentsApiUrl}${selectedYear}`
     )
       .then((res) => res.json())
       .then((data) => {

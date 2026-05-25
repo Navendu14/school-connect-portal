@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero, Section, SectionTitle } from "@/components/site/Page";
-import { Users, Heart, FileText, Trophy, Shield } from "lucide-react";
+import { Heart, FileText, Shield } from "lucide-react";
 import RTEStudentsSection from "@/components/site/RTEStudentsSection";
 import TCStudentsSection from "@/components/site/TCStudentsSection";
 import AchievementsSection from "@/components/site/AchievementsSection";

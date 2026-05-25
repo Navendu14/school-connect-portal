@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHero, Section, SectionTitle } from "@/components/site/Page";
 import { BookOpen, FlaskConical, Calculator, Calendar } from "lucide-react";
 import BookPriceList from "@/components/site/BookPriceList";
+import { booksApiUrl, booksClassApiUrl } from "@/config/config";
 
 export const Route = createFileRoute("/academics")({
   head: () => ({
@@ -107,8 +108,8 @@ function Academics() {
           </div>
 
           <BookPriceList
-            classApiUrl="https://risenshineps.com/api/books/get_book_class.php"
-            booksApiUrl="https://risenshineps.com/api/books/get_books_detail.php"
+            classApiUrl={booksClassApiUrl}
+            booksApiUrl={booksApiUrl}
           />
         </div>
       </Section>

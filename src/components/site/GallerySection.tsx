@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { Section, SectionTitle } from "@/components/site/Page";
+import { galleryApiUrl } from "@/config/config";
 
-const API_URL = "https://www.risenshineps.com/api/gallery/get_image_info.php";
+const API_URL = galleryApiUrl;  // defined in src/config/config.ts
 const IMG_BASE = "/img/gallery/";
 
 interface Album {

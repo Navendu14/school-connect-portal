@@ -2,6 +2,7 @@
 // Smart component — fetches events from API and renders all cards.
 // Import this wherever you need to show the events grid.
 
+import { eventsApiUrl } from "@/config/config";
 import { useEffect, useState } from "react";
 
 export interface EventDetail {
@@ -12,7 +13,7 @@ export interface EventDetail {
   bg_image: string;       // e.g. "/img/events/image1.jpg"
 }
 
-const API_URL = "https://www.risenshineps.com/api/events/get_event_detail.php";
+const API_URL = eventsApiUrl;  
 
 /** Formats "2026-01-26" → "Jan 26, 2026" */
 function formatDate(iso: string): string {

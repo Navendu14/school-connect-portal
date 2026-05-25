@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Trophy } from "lucide-react";
 import { Section, SectionTitle } from "@/components/site/Page";
+import { achievementsApiUrl } from "@/config/config";
 
-const BASE_URL = "https://www.risenshineps.com";
-const API_URL = "https://www.risenshineps.com/api/achievement/get_student_achievement.php";
+const API_URL = achievementsApiUrl;
 const INITIAL_SHOW = 6;
 
 interface Achievement {

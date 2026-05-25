@@ -3,7 +3,7 @@ import { PageHero, Section, SectionTitle } from "@/components/site/Page";
 import { CheckCircle2, FileText, BookOpen, Truck, Loader2 } from "lucide-react";
 import { Toaster } from "@/components/ui/sonner";
 import { useEffect, useState } from "react";
-import { CONVEYANCE_CHARGES } from "@/config/config";
+import { booksApiUrl, booksClassApiUrl, CONVEYANCE_CHARGES, feesApiUrl } from "@/config/config";
 import BookPriceList from "@/components/site/BookPriceList";
 
 export const Route = createFileRoute("/admissions")({
@@ -51,7 +51,7 @@ function Admissions() {
   const [feesError, setFeesError] = useState(false);
 
   useEffect(() => {
-    fetch("https://risenshineps.com/api/fees/get_fees.php")
+    fetch(feesApiUrl)
       .then((res) => {
         if (!res.ok) throw new Error("Network error");
         return res.json();
@@ -171,8 +171,8 @@ function Admissions() {
               We follow Bhartiya Shiksha Board prescribed textbooks supplemented.
             </p>
             <BookPriceList
-              classApiUrl="https://risenshineps.com/api/books/get_book_class.php"
-              booksApiUrl="https://risenshineps.com/api/books/get_books_detail.php"
+              classApiUrl={booksClassApiUrl}
+              booksApiUrl={booksApiUrl}
             />
           </div>
         </div>

@@ -3,6 +3,7 @@
 // Import this wherever you need to show the notices list.
 import { useEffect, useState } from "react";
 import { Calendar, ChevronDown, ChevronUp, FileText } from "lucide-react";
+import { noticesApiUrl } from "@/config/config";
 
 export interface NoticeDetail {
   id: number;
@@ -13,7 +14,7 @@ export interface NoticeDetail {
   documents: string[];
 }
 
-const API_URL = "https://www.risenshineps.com/api/notices/get_notice_detail.php";
+const API_URL = noticesApiUrl;  // defined in src/config/config.ts
 const BASE_URL = "/documents/notices/"; // For relative document paths returned by the API
 
 const tagColors: Record<string, string> = {

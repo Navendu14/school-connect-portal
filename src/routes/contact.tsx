@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
-import { ADDRESS, EMAIL, PHONE } from "@/config/config";
+import { ADDRESS, EMAIL, mapEmbedUrl, PHONE } from "@/config/config";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({ meta: [{ title:"Contact — Rise & Shine Public School" }, { name:"description", content:"Get in touch with Rise & Shine Public School. Address, phone, email and contact form." }]}),
@@ -52,7 +52,7 @@ function Contact() {
             <div className="rounded-2xl overflow-hidden border border-border h-80 lg:h-[420px]">
               <iframe
                 title="School location"
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6963.862273454487!2d79.483767!3d29.225579999999997!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x4da6a6e7b14de81e!2sRise%20and%20Shine%20Public%20School!5e0!3m2!1sen!2sin!4v1567708624329!5m2!1sen!2sin"
+                src={mapEmbedUrl}
                 className="w-full h-full"
                 loading="lazy"
               />

@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHero, Section } from "@/components/site/Page";
 import { Mail, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { PRINCIPAL_NAME, PRINCIPAL_QUALIFICATIONS } from "@/config/config";
+import { facultyApiUrl, PRINCIPAL_NAME, PRINCIPAL_QUALIFICATIONS } from "@/config/config";
 
 export const Route = createFileRoute("/faculty")({
   head: () => ({ meta: [{ title: "Faculty — Rise & Shine Public School" }, { name: "description", content: "Meet our team of experienced and passionate educators." }] }),
@@ -14,6 +14,7 @@ interface Teacher {
   name: string;
   qualification: string;
   designation: string;
+  bg_img: string;
 }
 
 const principal: Teacher = {
@@ -21,6 +22,7 @@ const principal: Teacher = {
   name: PRINCIPAL_NAME,
   qualification: PRINCIPAL_QUALIFICATIONS,
   designation: "Principal",
+  bg_img: "/img/principal/image.png",
 };
 
 function Faculty() {
@@ -29,7 +31,7 @@ function Faculty() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("https://risenshineps.com/api/teacher/get_teachers.php")
+    fetch(facultyApiUrl)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch faculty data.");
         return res.json();
@@ -65,7 +67,7 @@ function Faculty() {
               <div key={f.id} className="group rounded-2xl bg-card border border-border overflow-hidden hover:shadow-card hover:-translate-y-1 transition-all">
                 <div className="p-5">
                   <div className="aspect-[4/5] overflow-hidden">
-                    <img src="/img/principal/image.png" alt={f.name} loading="lazy" className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <img src={f.bg_img} alt={f.name} loading="lazy" className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
                   <div className="text-xs uppercase tracking-wider text-primary font-semibold">{f.designation}</div>
                   <h3 className="mt-1 font-display text-lg font-semibold">{f.name}</h3>
