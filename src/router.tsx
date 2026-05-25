@@ -14,3 +14,14 @@ export const getRouter = () => {
 
   return router;
 };
+
+// Create and export the router instance for the client-side entry point
+export const router = getRouter();
+
+// Register the router instance for TypeScript safety
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router;
+  }
+}
+
